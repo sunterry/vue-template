@@ -34,30 +34,30 @@ npm run build
 ├── src/						            # 生产目录
 │   └── assets/                 # 一些资源文件
 │       └── css                 # css 文件
-│       └── image				        # 全局 image文件
-│       └── js				          # 全局通用js文件
+│       └── image               # 全局 image文件
+│       └── js                  # 全局通用js文件
 │   └── components/             # 通用业务组件
 │       └── ...
-│   └── layout/             		# layout组件
+│   └── layout/                 # layout组件
 │       └── ...
 │   └── directive/              # 全局指令
 │       └── ...
-│   └── filter/             		# 全局过滤器
+│   └── filter/                 # 全局过滤器
 │       └── ...
-│   └── http/             		  # 请求入口
-│       └── index.js				    # 项目接口存放地址
-│       └── http.code.js			  # 请求静态常量存放
-│       └── request.js			    # axios 封装
-│   └── router/             		# 路由配置文件
+│   └── http/                   # 请求入口
+│       └── index.js            # 项目接口存放地址
+│       └── http.code.js        # 请求静态常量存放
+│       └── request.js          # axios 封装
+│   └── router/                 # 路由配置文件
 │       └── ...
-│   └── store/             		  # vuex 配置
+│   └── store/                  # vuex 配置
 │       └── ...
-│   └── util/             		  # 全局的工具方法
+│   └── util/                   # 全局的工具方法
 │       └── ...
-│   └── views/             		  # 页面组件
+│   └── views/                  # 页面组件
 │       └── ...
-│   └── mian.js/     			      # 页面入口文件
-│   └── App.js/     				    # 页面跟组件
+│   └── mian.js/                # 页面入口文件
+│   └── App.js/                 # 页面跟组件
 ├── static/                     # 不需要webpack处理的文件
 ├── .babelrc                    # babel 配置文件
 ├── .editorconfig               # 编辑器如何去显示当前代码
