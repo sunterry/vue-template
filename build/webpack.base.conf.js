@@ -54,7 +54,6 @@ module.exports = {
       '@filter': resolve('src/filter'),
       '@constant': resolve('src/constant'),
       '@layout': resolve('src/layout'),
-      '@api': resolve('src/api'),
       '@views': resolve('src/views'),
       '@directive': resolve('src/directive')
     }
