@@ -41,6 +41,8 @@ module.exports = {
   resolve: {
     // 当你在vue中引用以下文件的时候，可以不用写他们的后缀名， 但是为了webpack的查找优化， 建议越少越好
     extensions: ['.js', '.vue', '.json'],
+    // 使用绝对路径指明第三方模块的存放位置，以减少搜索步骤
+    modules: [resolve('node_modules')],
     // 别名
     // vue$ 表示确切匹配vue文件不允许有其他的路径
     alias: {
@@ -69,8 +71,9 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        loader: 'babel-loader?cacheDirectory', // cacheDirectory开启， 支持缓存转换出的结果
+        include: [resolve('src')],
+        exclude: [resolve('node_modules')],
         //  include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
         // 生产环境是不需要他们，提高打包速度 这里被删除 resolve('test'), resolve('node_modules/webpack-dev-server/client')
       },

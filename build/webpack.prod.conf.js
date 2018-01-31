@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HtmlInlineChunkPlugn = require('html-webpack-inline-chunk-plugin')
 
 const env = require('../config/prod.env')
 
@@ -109,7 +110,10 @@ const webpackConfig = merge(baseWebpackConfig, {
       children: true,
       minChunks: 2
     }),
-
+    // minafest in to html  把 webpack的文件 直接放到html中 防止每次请求
+    new HtmlInlineChunkPlugn({
+      inlineChunks: ['manifest']
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
