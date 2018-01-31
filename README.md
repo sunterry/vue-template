@@ -31,7 +31,7 @@ npm run build
 ├── config/
 │   ├── index.js                # 项目配置目录
 │   └── ...
-├── src/						            # 生产目录
+├── src/                        # 生产目录
 │   └── assets/                 # 一些资源文件
 │       └── css                 # css 文件
 │       └── image               # 全局 image文件
