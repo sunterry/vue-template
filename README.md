@@ -23,7 +23,8 @@ npm run dev || yarn start
 npm run build
 ```
 ***
-### 目录结构
+目录结构
+
 <pre>
 .
 ├── build/                      #  项目的 Webpack 配置文件
@@ -31,11 +32,11 @@ npm run build
 ├── config/
 │   ├── index.js                # 项目配置目录
 │   └── ...
-├── src/						# 生产目录
+├── src/						            # 生产目录
 │   └── assets/                 # 一些资源文件
 │       └── css                 # css 文件
-│       └── image				# 全局 image文件
-│       └── js				    # 全局通用js文件
+│       └── image				        # 全局 image文件
+│       └── js				          # 全局通用js文件
 │   └── components/             # 通用业务组件
 │       └── ...
 │   └── layout/             		# layout组件
@@ -44,20 +45,20 @@ npm run build
 │       └── ...
 │   └── filter/             		# 全局过滤器
 │       └── ...
-│   └── http/             		# 请求入口
-│       └── index.js				# 项目接口存放地址
-│       └── http.code.js			# 请求静态常量存放
-│       └── request.js			# axios 封装
+│   └── http/             		  # 请求入口
+│       └── index.js				    # 项目接口存放地址
+│       └── http.code.js			  # 请求静态常量存放
+│       └── request.js			    # axios 封装
 │   └── router/             		# 路由配置文件
 │       └── ...
-│   └── store/             		# vuex 配置
+│   └── store/             		  # vuex 配置
 │       └── ...
-│   └── util/             		# 全局的工具方法
+│   └── util/             		  # 全局的工具方法
 │       └── ...
-│   └── views/             		# 页面组件
+│   └── views/             		  # 页面组件
 │       └── ...
-│   └── mian.js/     			# 页面入口文件
-│   └── App.js/     				# 页面跟组件
+│   └── mian.js/     			      # 页面入口文件
+│   └── App.js/     				    # 页面跟组件
 ├── static/                     # 不需要webpack处理的文件
 ├── .babelrc                    # babel 配置文件
 ├── .editorconfig               # 编辑器如何去显示当前代码
@@ -71,8 +72,9 @@ npm run build
 </pre>
 
 
-### 当我们第一次使用vue-cli时，开启一个开发环境，并没有帮我们打开一个浏览器页面, 我们修改它：
- ```
+当我们第一次使用vue-cli时，开启一个开发环境，并没有帮我们打开一个浏览器页面, 我们修改它：
+
+```
      build/webpack.dev.conf.js
              devServer: {
                ....
@@ -85,7 +87,8 @@ npm run build
 
  ```
 
-### 如果我们的端口被占用， 我们怎么修改端口呢
+如果我们的端口被占用， 我们怎么修改端口呢
+
 ```
     build/webpack.dev.conf.js
        devServer: {
@@ -102,4 +105,5 @@ npm run build
         PORT=4000 npm run dev
 
 ```
-### 打包  npm run build 命令, 可以npm run build --report 来分析我们的代码
+
+打包  npm run build 命令, 可以npm run build --report 来分析我们的代码
