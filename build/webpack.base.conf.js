@@ -33,6 +33,7 @@ module.exports = {
     // 下面的的变量其实都是来自 /config index.js 中的变量
     path: config.build.assetsRoot,
     filename: '[name].js',
+    chunkFilename: '[name].js',
     // 根据你的环境变量来看， 如果你的是生产环境的话可以是cdn地址，在这里都是项目的跟地址
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
@@ -46,7 +47,11 @@ module.exports = {
     // 别名
     // vue$ 表示确切匹配vue文件不允许有其他的路径
     alias: {
+      // 减少耗时的递归操作
       'vue$': 'vue/dist/vue.esm.js',
+      'vue-router$': 'vue-router/dist/vue-router.esm.js',
+      'vuex': 'vuex/dist/vuex.esm.js',
+      'axios': 'axios/dist/axios.min.js',
       '@components': resolve('src/components'),
       '@router': resolve('src/router'),
       '@util': resolve('src/util'),
