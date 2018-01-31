@@ -1,4 +1,4 @@
-import {Login} from '@api'
+import {Login} from '@http'
 import {SUCCESS_SERVER} from '@http/http.code'
 import {USERLOGIN} from '@store/types'
 export default {
