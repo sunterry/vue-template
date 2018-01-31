@@ -1,18 +1,76 @@
-# vue-app
+# vue-template
+
+### 安装
+
+***
+项目地址: (`git clone`)
+```shell
+https://github.com/sunterry/vue-template.git
+```
+通过`npm`安装本地服务第三方依赖模块(需要已安装[Node.js](https://nodejs.org/))
 
 ```
-  static  存放一些不需要被webpack所处理的一些文件，比如第三方并没有被node_modules所管理的包
-  src     项目的源码文件
-  config  开发环境以及生产环境的区分
-  build   生产环境和开发环境的一些配置
+npm install || yarn
 ```
-
-### 运行
-```
-  yarn 下载依赖
-  yarn start 开发环境自动打开浏览器
+启动服务: (http://localhost:9000)
 
 ```
+npm run dev || yarn start
+```
+发布代码
+
+```
+npm run build
+```
+***
+### 目录结构
+<pre>
+.
+├── build/                      #  项目的 Webpack 配置文件
+│   └── ...
+├── config/
+│   ├── index.js                # 项目配置目录
+│   └── ...
+├── src/						# 生产目录
+│   └── assets/                 # 一些资源文件
+│       └── css                 # css 文件
+│       └── image				# 全局 image文件
+│       └── js				    # 全局通用js文件
+│   └── components/             # 通用业务组件
+│       └── ...
+│   └── layout/             		# layout组件
+│       └── ...
+│   └── directive/              # 全局指令
+│       └── ...
+│   └── filter/             		# 全局过滤器
+│       └── ...
+│   └── http/             		# 请求入口
+│       └── index.js				# 项目接口存放地址
+│       └── http.code.js			# 请求静态常量存放
+│       └── request.js			# axios 封装
+│   └── router/             		# 路由配置文件
+│       └── ...
+│   └── store/             		# vuex 配置
+│       └── ...
+│   └── util/             		# 全局的工具方法
+│       └── ...
+│   └── views/             		# 页面组件
+│       └── ...
+│   └── mian.js/     			# 页面入口文件
+│   └── App.js/     				# 页面跟组件
+├── static/                     # 不需要webpack处理的文件
+├── .babelrc                    # babel 配置文件
+├── .editorconfig               # 编辑器如何去显示当前代码
+├── .eslintrc.js                # eslint 配置文件
+├── .eslintignore               # eslint 规则配置
+├── .gitignore                  # sensible defaults for gitignore
+├── .postcssrc.js               # postcss 配置文件
+├── index.html                  # index.html 模板文件
+├── package.json                # build scripts and dependencies
+└── README.md                   # Default README file
+</pre>
+
+
 ### 当我们第一次使用vue-cli时，开启一个开发环境，并没有帮我们打开一个浏览器页面, 我们修改它：
  ```
      build/webpack.dev.conf.js
@@ -45,14 +103,3 @@
 
 ```
 ### 打包  npm run build 命令, 可以npm run build --report 来分析我们的代码
-
-
-### 开发配置
-      build/webpack.base.conf.js 文件， 大概有4块内容
-        1. 所需依赖
-        2. resolve () 函数， 只要调用了这个方法， 那么所有的文件路径都是从项目的根路径出发的
-        3. eslint-loader的配置
-        4. 整体的基础的配置
-
-      .babelrc babel的配置文件
-      .editorconfig 告诉各个编辑器如何去显示当前代码
