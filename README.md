@@ -15,11 +15,16 @@ npm install || yarn
 启动服务: (http://localhost:9000)
 
 ```
+
+第一次运行应当先运行 yarn dll
+npm run dll || yarn dll 第三方包依赖打包，第三方包缓存后， 来提高打包速度，
 npm run dev || yarn start
+
 ```
 发布代码
 
 ```
+第一次运行应当先运行 yarn dll
 npm run build
 ```
 ***
