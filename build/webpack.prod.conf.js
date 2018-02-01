@@ -41,8 +41,9 @@ const webpackConfig = merge(baseWebpackConfig, {
           warnings: false
         }
       },
-      sourceMap: config.build.productionSourceMap,
-      parallel: true
+      sourceMap: config.build.productionSourceMap, // config/index.js 关闭了sourceMap 调试
+      parallel: true,
+      cache: true // 开启缓存
     }),
     // extract css into its own file
     new ExtractTextPlugin({
