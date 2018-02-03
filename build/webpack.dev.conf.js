@@ -18,7 +18,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   //  css 文件在 webpack.dev.conf.js 和 wbepack.prod.conf.js 单独配置
   // 是否开启 sourceMap， 是否使用postcss
   module: {
-    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
+    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true }),
   },
   // cheap-module-eval-source-map is faster for development
   devtool: config.dev.devtool,

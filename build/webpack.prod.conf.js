@@ -11,19 +11,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlInlineChunkPlugn = require('html-webpack-inline-chunk-plugin')
-const HappyPack = require('happypack')
-
 const env = require('../config/prod.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     //  css 文件在 webpack.dev.conf.js 和 wbepack.prod.conf.js 单独配置
     // 是否开启 sourceMap， 是否使用postcss
-    rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
-      extract: true,
-      usePostCSS: true
-    })
+    rules: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true, usePostCSS: true})
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
@@ -32,15 +26,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    new HappyPack({
-      id: 'vue',
-      loaders: [
-        {
-          loader: 'vue-loader',
-          option: require('./vue-loader.conf')
-        }
-      ]
-    }),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env

@@ -4,6 +4,8 @@ const utils = require('./utils')
 const config = require('../config')
 const webpack = require('webpack')
 const vueLoaderConfig = require('./vue-loader.conf')
+const HappyPack = require('happypack')
+
 
 // 只要通过这个resolve函数，就会把所有的目录先指向根目录，然后在找到相对应的路径
 function resolve (dir) {
@@ -113,7 +115,16 @@ module.exports = {
     new webpack.DllReferencePlugin({
       context: path.resolve(__dirname, '../'),
       manifest: require(resolve(`./static/js/vendor.manifest.json`))
-    })
+    }),
+    new HappyPack({
+      id: 'vue',
+      loaders: [
+        {
+          loader: 'vue-loader',
+          option: vueLoaderConfig
+        }
+      ]
+    }),
   ],
   // node 是防止node下面的方法防止注入到我们的代码中 true就是注入， false 就是不注入， empty 就是空对象
   node: {
@@ -128,5 +139,5 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   }
-  
+
 }
