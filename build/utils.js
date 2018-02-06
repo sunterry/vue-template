@@ -4,6 +4,11 @@ const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
 
+// 只要通过这个resolve函数，就会把所有的目录先指向根目录，然后在找到相对应的路径
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 // assetsPath 会根据我们的环境变量，如果是生产环境，他就会根据 /config build 下指定的目录
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -87,7 +92,9 @@ exports.styleLoaders = function (options) {
     const loader = loaders[extension]
     output.push({
       test: new RegExp('\\.' + extension + '$'), // 加入正则去判断， 有一个自动生成的过程
-      use: loader
+      use: loader,
+      exclude: resolve('node_modules'),
+      include: resolve('src')
     })
   }
   // 输入是 options， 输出是 output 是数组[]， 在merge的时候 就会生成一个完整的loader 给webpakc去处理
