@@ -9,9 +9,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlInlineChunkPlugn = require('html-webpack-inline-chunk-plugin')
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 const env = require('../config/prod.env')
+
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -30,10 +32,22 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
+    // prepack-webpack-plugin 由facebook 开源，采用了较为激进得方法，在保持结果一致得情况下，改变源代码得运行逻辑
+    // 输出性能更好得javascript代码， 将计算结果提前放到编译后得代码中， 不是在运行时采取求值
+    // new PrepackWebpackPlugin(),
+    new ParallelUglifyPlugin({
+      UglifyJs: {
+        cacheDir: true, // 开启缓存
+        exclude: /node_modules/, // node_modules下得代码不使用多个子线程压缩
         compress: {
-          warnings: false
+          warnings: false, // 在删除没有用到得代码时不输出警告
+          drop_console: true, // 删除代码中所有得console语句
+          collapse_vars: true, // 内嵌已定义但只用到一次得变量
+          reduce_vars: true // 提取出现了多次但是没有定义成变量去引用得静态值
+        },
+        output: {
+          beautify: false, // 最紧凑得输出
+          comments: false //删除所有得注释
         }
       },
       sourceMap: config.build.productionSourceMap, // config/index.js 关闭了sourceMap 调试
