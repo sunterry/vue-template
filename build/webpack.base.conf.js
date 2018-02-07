@@ -5,7 +5,7 @@ const config = require('../config')
 const webpack = require('webpack')
 const vueLoaderConfig = require('./vue-loader.conf')
 const HappyPack = require('happypack')
-const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin')
+// const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin')
 
 
 // 只要通过这个resolve函数，就会把所有的目录先指向根目录，然后在找到相对应的路径
@@ -44,8 +44,6 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    // 开启 Scope Hoisting 需要配置 mainFields
-    mainFields: ['jsnext: main', 'browser', 'main', 'module'],
     // 当你在vue中引用以下文件的时候，可以不用写他们的后缀名， 但是为了webpack的查找优化， 建议越少越好
     extensions: ['.js', '.vue', '.json'],
     // 使用绝对路径指明第三方模块的存放位置，以减少搜索步骤
@@ -120,16 +118,11 @@ module.exports = {
     ]
   },
   plugins: [
-    // webpack.DllReferencePlugin可以帮助webpack得知哪些包是dll负责的，进而避免重复打包
-    new webpack.DllReferencePlugin({
-      context: path.resolve(__dirname, '../'),
-      manifest: require(resolve(`./static/js/vendor.manifest.json`))
-    }),
     // 分析模块之间得关系，尽可能得打伞模块并且合并到一个函数中。但前提是不能造成代码冗余
     // 因此呢只有那些被引用了一次得模块才能被合并
     // 因为大部分库采用了commonjs得语法 所以下配置下resolve
     // 对于没有使用Es6模块化得代码 webpack会自动得做降级处理
-    new ModuleConcatenationPlugin(),
+    // new ModuleConcatenationPlugin(),
     new HappyPack({
       id: 'vue',
       loaders: [

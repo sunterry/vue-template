@@ -32,6 +32,11 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
+    // webpack.DllReferencePlugin可以帮助webpack得知哪些包是dll负责的，进而避免重复打包
+    new webpack.DllReferencePlugin({
+      context: path.resolve(__dirname, '../'),
+      manifest: require(path.resolve(__dirname, `./../static/js/vendor.manifest.json`))
+    }),
     // prepack-webpack-plugin 由facebook 开源，采用了较为激进得方法，在保持结果一致得情况下，改变源代码得运行逻辑
     // 输出性能更好得javascript代码， 将计算结果提前放到编译后得代码中， 不是在运行时采取求值
     // new PrepackWebpackPlugin(),
@@ -77,6 +82,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       template: 'index.html',
       inject: true,
+      dll: '/static/js/vendor.dll.js',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
